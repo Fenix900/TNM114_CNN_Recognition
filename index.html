@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My JavaScript Project</title>
-    <!-- Link to your CSS file -->
+    <title>Instrument guesser</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1>Welcome to My JavaScript Webpage</h1>
+<body id="everything">
+    <h1>Draw an instrument</h1>
     <canvas id="drawCanvas" width="280" height="280"></canvas>
-    <button id="clearBtn">Clear</button>
-    <button id="predictBtn">Predict</button>
+    <div id="buttons">
+        <button id="clearBtn">Clear</button>
+        <button id="predictBtn">Predict</button>
+    </div>
     <h3 id="prediction-result">Prediction: </h3>
     
-    <!-- Include your JavaScript file -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

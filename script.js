@@ -1,7 +1,21 @@
+//import * as tf from '@tensorflow/tfjs';
+
 // Select canvas and buttons
 const canvas = document.getElementById('drawCanvas');
 const ctx = canvas.getContext('2d');
 let isDrawing = false;
+
+async function loadModelAndPredict(input) {
+    try {
+        // Load the TensorFlow.js model
+        const model = await tf.loadLayersModel('ModelSave/model.json');
+        // Perform prediction
+        const prediction = model.predict(input);
+        return prediction;
+    } catch (error) {
+        console.error('Error::::', error);
+    }
+}
 
 // Handle drawing on canvas
 canvas.addEventListener('mousedown', () => {
@@ -32,11 +46,10 @@ document.getElementById('clearBtn').addEventListener('click', () => {
 document.getElementById('predictBtn').addEventListener('click', () => {
     const pixelData = getCanvasPixelData();
 
-    // For demonstration, alert the first 10 grayscale values
-    alert("First 10 pixel values: " + pixelData.slice(0, 784).join(", "));
-
     // You can now pass `pixelData` to your TensorFlow.js model for predictions
     console.log(pixelData)
+    const prediction = loadModelAndPredict(pixelData);
+    console.log(prediction);
 });
 
 
