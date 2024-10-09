@@ -1,4 +1,3 @@
-//import * as tf from '@tensorflow/tfjs';
 
 // Select canvas and buttons
 const canvas = document.getElementById('drawCanvas');
@@ -7,11 +6,19 @@ let isDrawing = false;
 
 async function loadModelAndPredict(input) {
     try {
-        // Load the TensorFlow.js model
-        const model = await tf.loadLayersModel('ModelSave/model.json');
-        // Perform prediction
-        const prediction = model.predict(input);
-        return prediction;
+        // Assuming the .json file is in your models folder
+        console.log('Loading model');
+        const model = await tf.loadLayersModel('funkar_men_it-våran/model.json');
+        console.log(model.summary());
+
+        console.log('Model loaded:', model);
+
+        // Use the model for prediction or other tasks
+        const inputTensor = tf.tensor(input);
+        console.log(inputTensor)
+        const prediction = model.predict(inputTensor);
+        console.log("22");
+        console.log('Prediction:', prediction);
     } catch (error) {
         console.error('Error::::', error);
     }
@@ -49,7 +56,7 @@ document.getElementById('predictBtn').addEventListener('click', () => {
     // You can now pass `pixelData` to your TensorFlow.js model for predictions
     console.log(pixelData)
     const prediction = loadModelAndPredict(pixelData);
-    console.log(prediction);
+    console.log("after prdiction function" + prediction);
 });
 
 
