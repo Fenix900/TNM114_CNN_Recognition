@@ -8,7 +8,7 @@ async function loadModelAndPredict(input) {
     try {
         // Assuming the .json file is in your models folder
         console.log('Loading model');
-        const model = await tf.loadLayersModel('python/myModel/pythonModel.keras');
+        const model = await tf.loadLayersModel('python/NumberModel/tfj/model.json');
         console.log(model.summary());
 
         console.log('Model loaded:', model);
@@ -17,7 +17,6 @@ async function loadModelAndPredict(input) {
         const inputTensor = tf.tensor(input);
         console.log(inputTensor)
         const prediction = model.predict(inputTensor);
-        console.log("22");
         console.log('Prediction:', prediction);
     } catch (error) {
         console.error('Error::::', error);
@@ -32,7 +31,7 @@ canvas.addEventListener('mousedown', () => {
 
 canvas.addEventListener('mousemove', (e) => {
     if (isDrawing) {
-        ctx.lineWidth = 5;
+        ctx.lineWidth = 30;
         ctx.lineCap = 'round';
         ctx.strokeStyle = 'black';
         ctx.lineTo(e.offsetX, e.offsetY);
@@ -51,16 +50,18 @@ document.getElementById('clearBtn').addEventListener('click', () => {
 });
 
 // Placeholder for predict button (you can add the TensorFlow.js logic here)
-document.getElementById('predictBtn').addEventListener('click', () => {
+/*document.getElementById('predictBtn').addEventListener('click', () => {
     const pixelData = getCanvasPixelData();
     console.log(pixelData);
+    //loadModelAndPredict(pixelData)
 
+    window.alert("This does not work :( \n pleas download the image and run in python");
 
     // You can now pass `pixelData` to your TensorFlow.js model for predictions
     //console.log(pixelData)
     //const prediction = loadModelAndPredict(pixelData);
     //console.log("after prdiction function" + prediction);
-});
+});*/
 
 // Download canvas as an image
 document.getElementById('downloadBtn').addEventListener('click', () => {
